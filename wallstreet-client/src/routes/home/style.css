@@ -3,6 +3,10 @@
 	justify-content: space-between;
 }
 
+:is(.transactions, .users) {
+	padding: 1rem;
+}
+
 .table {
   border-collapse: collapse;
 }
@@ -12,6 +16,7 @@
 }
 
 ul {
+	padding: 0;
 	list-style: none;
 }
 

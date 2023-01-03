@@ -62,11 +62,11 @@ const Home = () => {
   
 	return (
 		<div>
-			<input type="file" onChange={handleFileInputChange}></input>
-			<main class={style.main}>
-				<section id="transactions">
+			<main className={style.main}>
+				<section className={style.transactions}>
+					<input type="file" onChange={handleFileInputChange}></input>
 					<h2>Transactions</h2>
-					<table class={style.table}>
+					<table className={style.table}>
 						<thead>
 							<tr style={{ textAlign: "left" }}>
 								<th>Type</th>
@@ -82,7 +82,7 @@ const Home = () => {
 										backgroundColor:
 											selectedTransactionIds.has(transaction.id) ? "purple" : "unset"
 									}}
-									class={style.transaction}
+									className={style.transaction}
 									onClick={() => onClickTransaction(transaction.id)}>
 									<td>{transaction.type}</td>
 									<td>{transaction.amount} EUR</td>
@@ -92,7 +92,7 @@ const Home = () => {
 						</tbody>
 					</table>
 				</section>
-				<section id="users">
+				<section className={style.users}>
 					<h2>Users</h2>
 					<ul>
 						{users.map((user) => (
