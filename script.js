@@ -1,7 +1,7 @@
 const input = document.getElementById("fileInput");
 const table = document.getElementById("table");
 
-let data = [];
+let allTransactions = [];
 let users = [
   { id: 1, name: "daan", transactions: [] },
   { id: 2, name: "tim", transactions: [] },
@@ -50,7 +50,6 @@ const handleAddUser = (event) => {
 const setTableData = (data) => {
   const tableData = data
     .map((transaction) => {
-      console.log(transaction);
       const { type, amount, description, id } = transaction;
       return `
       <tr onclick="handleTransaction(${id})" data-id="${id}">
@@ -97,7 +96,7 @@ function parseCSV(csvString) {
   }
 
   setTableData(data);
-  return data;
+  allTransactions = data;
 }
 
 parseCSV(csvString);
@@ -112,23 +111,22 @@ const handleUser = (id) => {
   // Add transaction to user
   transactions.push(currentlySelectedTransaction);
 
+  console.log(user)
+
   // Remove transaction from data
-  data = data.filter(
+  allTransactions = allTransactions.filter(
     (transaction) => transaction.id !== currentlySelectedTransaction.id
   );
 
-  console.log(users);
-
   // Update table
-  setTableData(data);
+  setTableData(allTransactions);
 };
 
 const handleTransaction = (id) => {
   console.log("Transaction: ", id);
-  const transaction = data.find((transaction) => transaction.id === id);
+  const transaction = allTransactions.find((transaction) => transaction.id === id);
 
-  console.log(data);
-  console.log(transaction);
+  console.log(allTransactions);
   currentlySelectedTransaction = transaction;
 };
 
