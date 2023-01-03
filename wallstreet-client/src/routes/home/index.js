@@ -50,8 +50,19 @@ const Home = () => {
 		setSelectedTransactionIds(new Set());
 	}
 
+	const handleFileInputChange = (e) => {
+		const file = e.target.files[0];
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			const csv = e.target.result;
+			setTransactions(parseCSV(csv));
+		};
+		reader.readAsText(file);
+	}
+  
 	return (
 		<div>
+			<input type="file" onChange={handleFileInputChange}></input>
 			<main class={style.main}>
 				<section id="transactions">
 					<h2>Transactions</h2>
