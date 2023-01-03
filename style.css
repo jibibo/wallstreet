@@ -2,3 +2,15 @@ section {
   display: flex;
   justify-content: space-between;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+.transaction-row {
+  border: 1px solid red;
+}
+
+.transaction-row.selected {
+  background-color: yellow;
+}

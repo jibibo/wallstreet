@@ -6,12 +6,12 @@ let users = [
   { id: 1, name: "daan", transactions: [] },
   { id: 2, name: "tim", transactions: [] },
 ];
-let currentlySelectedTransaction = null;
+let selectedTransactionIds = new Set();
 
 const csvString = `type,amount,description
 deposit,10,tim
 withdraw,20,"hello i need money kind regards julian"
-activity,10,beer
+withdraw,20,beer
 deposit,10,daans`;
 
 // Handle adding user to the users array
@@ -52,7 +52,7 @@ const setTableData = (data) => {
     .map((transaction) => {
       const { type, amount, description, id } = transaction;
       return `
-      <tr onclick="handleTransaction(${id})" data-id="${id}">
+      <tr class="transaction-row" onclick="onClickTransaction(event, ${id})" data-id="${id}">
         <td>${type}</td>
         <td>${amount}</td>
         <td>${description}</td>
@@ -106,37 +106,68 @@ const handleUser = (id) => {
   const user = users.find((user) => user.id === id);
   const { transactions } = user;
 
-  if (!currentlySelectedTransaction) return;
+  if (selectedTransactionIds.size === 0) return;
 
-  // Add transaction to user
-  transactions.push(currentlySelectedTransaction);
-
-  console.log(user)
+  // Find transaction by id and add transaction to user transactions
+  selectedTransactionIds.forEach((id) => {
+    const transaction = allTransactions.find((transaction) => transaction.id === id);
+    transactions.push(transaction);
+  });
 
   // Remove transaction from data
   allTransactions = allTransactions.filter(
-    (transaction) => transaction.id !== currentlySelectedTransaction.id
+    (transaction) => !selectedTransactionIds.has(transaction.id)
   );
-
+  
   // Update table
   setTableData(allTransactions);
+  refreshUsersDiv();
+
+  // Reset selected transactions
+  selectedTransactionIds.clear()
+
+  console.log("User transactions: ", user);
 };
 
-const handleTransaction = (id) => {
-  console.log("Transaction: ", id);
-  const transaction = allTransactions.find((transaction) => transaction.id === id);
+const onClickTransaction = (event, id) => {
+  const transactionElement = event.target.parentElement;
 
-  console.log(allTransactions);
-  currentlySelectedTransaction = transaction;
+  if (selectedTransactionIds.has(id)) {
+    selectedTransactionIds.delete(id);
+    transactionElement.classList.remove("selected");
+    return;
+  }
+  
+  selectedTransactionIds.add(id);
+  transactionElement.classList.add("selected");
+};
+
+const calculateDebt = (user) => {
+  const { transactions } = user;
+  let total = 0;
+
+  transactions.forEach((transaction) => {
+    const { type, amount } = transaction;
+    if (type === "deposit") {
+      total -= parseInt(amount);
+    } else {
+      total += parseInt(amount);
+    }
+  });
+
+  return total;
 };
 
 const refreshUsersDiv = () => {
   let htmlString = "";
   users.map((user) => {
     const { id, name } = user;
+
+    const debt = calculateDebt(user);
+
     const userHtml = `
           <div onclick="handleUser(${id})" data-id="${id}">
-            <p>${name}</p>
+            <p>${name}</p><p>Debt: ${debt}</p>
           </div>
         `;
     htmlString += userHtml;
