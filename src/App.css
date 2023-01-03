@@ -1,0 +1,39 @@
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+tr.deposit {
+  border: 1px lime solid;
+}
+
+tr.withdrawal {
+  border: 1px red solid;
+}
+
+th {
+  border: 1px black solid;
+}
+
+tr.selected {
+  background-color: lightblue;
+}
+
+tr {
+  cursor: pointer;
+}
+
+.users-wrapper li {
+  cursor: pointer;
+  margin: 15px;
+  border: 1px black solid;
+}
+
+li.selected {
+  background-color: lightblue;
+}
+
+td {
+  min-width: 50px;
+}
