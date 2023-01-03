@@ -67,6 +67,7 @@ const Home = () => {
 							{transactions.map((transaction) => (
 								<tr
 									style={{
+										border: transaction.type === "deposit" ? "1px solid green" : "1px solid red",
 										backgroundColor:
 											selectedTransactionIds.has(transaction.id) ? "purple" : "unset"
 									}}
