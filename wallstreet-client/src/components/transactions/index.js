@@ -41,9 +41,16 @@ const Transactions = () => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			const csv = e.target.result;
-			setTransactions(parseCSV(csv));
+
+			// Check if transaction already exists by matching description
+			const descriptions = transactions.map((transaction) => transaction.description);
+			let newTransactions = parseCSV(csv);
+			newTransactions = newTransactions.filter((transaction) => !descriptions.includes(transaction.description));
+			setTransactions([...transactions, ...newTransactions]);
 		};
 		reader.readAsText(file);
+
+		e.target.value = "";
 	}
 
 	return (
