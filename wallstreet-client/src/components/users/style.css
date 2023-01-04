@@ -1,0 +1,85 @@
+.usersHeaderContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.usersHeader {
+  font-size: 2rem;
+}
+
+.usersHeader {
+  margin: 0;
+}
+
+.form {
+  margin-right: 2rem;
+}
+
+.form > input {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.form > input:focus {
+  outline: none;
+}
+
+.form > input::placeholder {
+  font-weight: bold;
+  color: #ccc;
+}
+
+.usersList {
+  margin-right: 2rem;
+}
+
+.userContainer {
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: #121212;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.userContainer:hover {
+  background-color: #181818;
+}
+
+.userDebt {
+  background-color: #0f0f0f;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.userTransaction {
+  background-color: #363636;
+  width: fit-content;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .usersHeaderContainer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .users {
+    padding: 1rem;
+  }
+
+  .form {
+    margin-right: 0;
+  }
+
+  .usersList {
+    width: 100%;
+  }
+}

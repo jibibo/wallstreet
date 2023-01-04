@@ -1,12 +1,23 @@
 :is(.transactions, .users) {
-	padding: 1rem;
+  padding: 1rem;
+}
+
+.fileInput {
+  content: "";
+}
+
+.transaction {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .table {
-  border-collapse: separate; 
-	border-spacing: 0 1em;
+  border-collapse: separate;
+  border-spacing: 0 1em;
 }
 
 .table :is(td, th) {
-	padding: 0.5rem;
+  padding: 0.5rem;
 }

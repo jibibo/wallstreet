@@ -21,21 +21,21 @@ const Transactions = () => {
 		transactionSplit,
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
-	
+
 	useEffect(() => {
 		setTransactions(parseCSV(CSV));
 	}, []);
-	
+
 	const onClickTransaction = (id) => {
 		if (selectedTransactionIds.has(id)) {
 			selectedTransactionIds.delete(id);
 		} else {
 			selectedTransactionIds.add(id);
 		}
-		
+
 		setSelectedTransactionIds(new Set(selectedTransactionIds));
 	}
-	
+
 	const handleFileInputChange = (e) => {
 		const file = e.target.files[0];
 		const reader = new FileReader();
@@ -45,11 +45,11 @@ const Transactions = () => {
 		};
 		reader.readAsText(file);
 	}
-	
+
 	return (
 		<section className={style.transactions}>
 			<input type="file" onChange={handleFileInputChange}></input>
-			<h2>Transactions</h2>
+			<h2 style={{ fontSize: "2rem" }}>Transactions</h2>
 			<table className={style.table}>
 				<thead>
 					<tr style={{ textAlign: "left" }}>
@@ -60,14 +60,14 @@ const Transactions = () => {
 				<tbody>
 					{transactions.map((transaction) => (
 						<tr
+							className={style.transaction}
 							style={{
 								boxShadow: transaction.amount > 0 ?
-									"0px 0px 0px 1px green" :
-									"0px 0px 0px 1px red",
-								backgroundColor:
-									selectedTransactionIds.has(transaction.id) ? "purple" : "unset"
+									"0px 0px 0px 2px #a8cf49" :
+									"0px 0px 0px 2px #f53636",
+								opacity:
+									selectedTransactionIds.has(transaction.id) ? "0.5" : "unset"
 							}}
-							className={style.transaction}
 							onClick={() => onClickTransaction(transaction.id)}>
 							<td>{transaction.amount} EUR</td>
 							<td>{transaction.description}</td>
@@ -76,6 +76,7 @@ const Transactions = () => {
 				</tbody>
 			</table>
 			<button
+				className="button"
 				disabled={selectedTransactionIds.size == 0}
 				onClick={() => setTransactionSplit(true)}>
 				Split among us

@@ -6,13 +6,11 @@ import Home from '../routes/home';
 
 const App = () => (
 	<TransactionsContextProvider>
-		<div id="app">
-			<main>
-				<Router>
-					<Home path="/" />
-				</Router>
-			</main>
-		</div>
+		<main>
+			<Router>
+				<Home path="/" />
+			</Router>
+		</main>
 	</TransactionsContextProvider>
 );
 
