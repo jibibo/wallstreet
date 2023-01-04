@@ -88,10 +88,25 @@ const Users = () => {
 		setTransactionSplit(false);
 		setSplitUsers([]);
 	}		
+
+	function addUser(event) {
+		event.preventDefault();
+		
+		if (event.target[0].value.trim() === '') return;
+		const name = event.target[0].value;
+		const id = users.length + 1;
+		
+		setUsers([...users, { id, name, transactions: [] }]);
+
+		event.target.reset();
+	}
   
   return (
     <section>
-      <h2>Users</h2>
+			<h2>Users</h2>
+			<form onSubmit={addUser}>
+				<input type="text" placeholder="Add user" />
+			</form>
       <ul>
         {users.map((user) => (
           <li onClick={() => handleUser(user.id)}>
