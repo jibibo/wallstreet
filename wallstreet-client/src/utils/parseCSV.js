@@ -11,20 +11,21 @@ export default function parseCSV(csvString) {
     let columns = rows[i].split(",");
     
     // Create an object for this row of data
-    let row = {};
+    let amount = parseFloat(columns[1]);
+    if (columns[0] == "withdraw")
+      amount = -amount;
     
-    // Use the keys array to set the values for each column
-    for (let j = 0; j < keys.length; j++) {
-      const key = keys[j].trim();
-      const value = columns[j].trim();
-      
-      row[key] = value;
-    }
+    const row = {
+      id: i,
+      amount,
+      description: columns[2],
+    };
     
     // Push the row object onto the data array
     row.id = i;
     data.push(row);
   }
   
+  console.log(data)
   return data;
 }
