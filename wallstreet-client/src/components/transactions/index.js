@@ -7,10 +7,10 @@ import { useContext, useEffect } from 'preact/hooks';
 import parseCSV from '../../utils/parseCSV';
 
 const CSV = `type,amount,description
-	deposit,10,tim
-	withdraw,20,"hello i need money kind regards julian"
-	withdraw,20,beer
-	deposit,10,daans`;
+deposit,10,tim
+withdraw,20,"hello i need money kind regards julian"
+withdraw,20,beer
+deposit,10,daans`;
 
 const Transactions = () => {
 	const {
@@ -18,6 +18,8 @@ const Transactions = () => {
 		setTransactions,
 		selectedTransactionIds,
 		setSelectedTransactionIds,
+		transactionSplit,
+		setTransactionSplit,
 	} = useContext(TransactionsContext);
 	
 	useEffect(() => {
@@ -51,7 +53,6 @@ const Transactions = () => {
 			<table className={style.table}>
 				<thead>
 					<tr style={{ textAlign: "left" }}>
-						<th>Type</th>
 						<th>Amount</th>
 						<th>Description</th>
 					</tr>
@@ -60,19 +61,23 @@ const Transactions = () => {
 					{transactions.map((transaction) => (
 						<tr
 							style={{
-								border: transaction.type === "deposit" ? "1px solid green" : "1px solid red",
+								border: transaction.amount > 0 ? "2px solid green" : "2px solid red",
 								backgroundColor:
 									selectedTransactionIds.has(transaction.id) ? "purple" : "unset"
 							}}
 							className={style.transaction}
 							onClick={() => onClickTransaction(transaction.id)}>
-							<td>{transaction.type}</td>
 							<td>{transaction.amount} EUR</td>
 							<td>{transaction.description}</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+			<button
+				disabled={selectedTransactionIds.size == 0}
+				onClick={() => setTransactionSplit(true)}>
+				Split among us
+			</button>
 		</section>
 	);
 }

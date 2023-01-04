@@ -6,7 +6,8 @@ export const TransactionsContext = createContext();
 
 export const TransactionsContextProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
-	const [selectedTransactionIds, setSelectedTransactionIds] = useState(new Set());
+  const [selectedTransactionIds, setSelectedTransactionIds] = useState(new Set());
+  const [transactionSplit, setTransactionSplit] = useState(false);
 
   return (
     <TransactionsContext.Provider
@@ -15,6 +16,8 @@ export const TransactionsContextProvider = ({ children }) => {
         setTransactions,
         selectedTransactionIds,
         setSelectedTransactionIds,
+        transactionSplit,
+        setTransactionSplit,
       }}>
       {children}
     </TransactionsContext.Provider>
