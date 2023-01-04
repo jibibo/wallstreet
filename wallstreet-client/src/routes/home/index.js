@@ -1,6 +1,8 @@
 import style from './style.css';
 
-import { useEffect, useState } from "preact/hooks"
+import { useContext, useEffect, useState } from "preact/hooks"
+
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 import parseCSV from '../../utils/parseCSV';
 import calculateDebt from '../../utils/calculateDebt';
@@ -17,8 +19,9 @@ const Home = () => {
 		{ id: 2, name: "tim", transactions: [] },
 	]);
 	
-	const [transactions, setTransactions] = useState([]);
+	const [transactions, setTransactions] = useContext(TransactionsContext);
 	const [selectedTransactionIds, setSelectedTransactionIds] = useState(new Set());
+
 	useEffect(() => {
 		setTransactions(parseCSV(CSV));
 	}, []);
