@@ -61,7 +61,9 @@ const Transactions = () => {
 					{transactions.map((transaction) => (
 						<tr
 							style={{
-								border: transaction.amount > 0 ? "2px solid green" : "2px solid red",
+								boxShadow: transaction.amount > 0 ?
+									"0px 0px 0px 1px green" :
+									"0px 0px 0px 1px red",
 								backgroundColor:
 									selectedTransactionIds.has(transaction.id) ? "purple" : "unset"
 							}}
