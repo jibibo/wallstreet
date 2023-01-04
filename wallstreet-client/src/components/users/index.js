@@ -108,6 +108,31 @@ const Users = () => {
 		event.target.reset();
 	}
 
+	const handleDragOver = (event) => {
+		event.preventDefault();
+	}
+
+	const handleOnDrop = (event, userId) => {
+		const user = users.find((user) => user.id === userId);
+		const transactionId = event.dataTransfer.getData("text/plain");
+
+		const transaction = transactions.find((transaction) => transaction.id === transactionId);
+
+		user.transactions.push(transaction);
+
+		setUsers([...users]);
+		setTransactions(
+			transactions.filter((transaction) => transaction.id !== transactionId)
+		);
+
+		// Clear the selected transaction if it was in selectedTransactionIds
+		if (selectedTransactionIds.has(transactionId)) {
+			selectedTransactionIds.delete(transactionId);
+			setSelectedTransactionIds(new Set(selectedTransactionIds));
+		}
+	}
+
+
 	return (
 		<section className={style.users}>
 			<div>
@@ -120,7 +145,11 @@ const Users = () => {
 				<div>
 					<ul className={style.usersList}>
 						{users.map((user) => (
-							<li className={style.userContainer} onClick={() => handleUser(user.id)}>
+							<li
+								className={style.userContainer}
+								onClick={() => handleUser(user.id)}
+								onDragOver={handleDragOver}
+								onDrop={(event) => handleOnDrop(event, user.id)}>
 								<h2>{user.name} {user.selected ? '✅' : ''}</h2>
 								<p className={style.userDebt}><b>Debt</b>: {calculateDebt(user.transactions)}</p>
 								{

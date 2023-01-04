@@ -50,6 +50,10 @@ const Transactions = () => {
 		e.target.value = "";
 	}
 
+	const handleDragStart = (event, transactionId) => {
+		event.dataTransfer.setData("text/plain", transactionId);
+	}
+
 	return (
 		<section className={style.transactions}>
 			<input type="file" onChange={handleFileInputChange}></input>
@@ -64,6 +68,8 @@ const Transactions = () => {
 				<tbody>
 					{transactions.map((transaction) => (
 						<tr
+							draggable
+							onDragStart={(event) => handleDragStart(event, transaction.id)}
 							className={style.transaction}
 							style={{
 								boxShadow: transaction.amount > 0 ?
