@@ -6,24 +6,21 @@ import { useContext, useEffect } from 'preact/hooks';
 
 import parseCSV from '../../utils/parseCSV';
 
-const CSV = `type,amount,description
-deposit,10,tim
-withdraw,20,"hello i need money kind regards julian"
-withdraw,20,beer
-deposit,10,daans`;
-
 const Transactions = () => {
 	const {
 		transactions,
 		setTransactions,
 		selectedTransactionIds,
 		setSelectedTransactionIds,
-		transactionSplit,
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
 
 	useEffect(() => {
-		setTransactions(parseCSV(CSV));
+		const storedTransactions = localStorage.getItem("transactions");
+		if (storedTransactions) {
+			setTransactions(JSON.parse(storedTransactions));
+			return;
+		}
 	}, []);
 
 	const onClickTransaction = (id) => {

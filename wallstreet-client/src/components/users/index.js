@@ -1,6 +1,6 @@
 import { TransactionsContext } from '../../context/TransactionsContext';
 
-import { useState, useContext } from 'preact/hooks';
+import { useState, useContext, useEffect } from 'preact/hooks';
 
 import calculateDebt from '../../utils/calculateDebt';
 
@@ -9,12 +9,10 @@ import style from './style.css';
 const Users = () => {
 	const [splitUsers, setSplitUsers] = useState([]);
 	const [inspectUser, setInspectUser] = useState(null);
-	const [users, setUsers] = useState([
-		{ id: 1, name: "daan", transactions: [], selected: false },
-		{ id: 2, name: "tim", transactions: [], selected: false },
-	]);
 
 	const {
+		users,
+		setUsers,
 		transactions,
 		setTransactions,
 		selectedTransactionIds,
@@ -22,6 +20,13 @@ const Users = () => {
 		transactionSplit,
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
+
+	useEffect(() => {
+		const savedUsers = JSON.parse(localStorage.getItem('users'));
+		if (savedUsers) {
+			setUsers(savedUsers);
+		}
+	});
 
 	const handleUser = (id) => {
 		if (selectedTransactionIds.size === 0) {
@@ -98,7 +103,7 @@ const Users = () => {
 		const name = event.target[0].value;
 		const id = users.length + 1;
 
-		setUsers([...users, { id, name, transactions: [] }]);
+		setUsers([...users, { id, name, transactions: [], selected: false }]);
 
 		event.target.reset();
 	}
