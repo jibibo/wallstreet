@@ -3,18 +3,6 @@
 	justify-content: space-between;
 }
 
-:is(.transactions, .users) {
-	padding: 1rem;
-}
-
-.table {
-  border-collapse: collapse;
-}
-
-.table :is(td, th) {
-	padding: 0.5rem;
-}
-
 ul {
 	padding: 0;
 	list-style: none;

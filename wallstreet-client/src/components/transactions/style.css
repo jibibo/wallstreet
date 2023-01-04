@@ -1,0 +1,11 @@
+:is(.transactions, .users) {
+	padding: 1rem;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table :is(td, th) {
+	padding: 0.5rem;
+}
