@@ -26,7 +26,7 @@ const Users = () => {
 		if (savedUsers) {
 			setUsers(savedUsers);
 		}
-	});
+	}, []);
 
 	const handleUser = (id) => {
 		if (selectedTransactionIds.size === 0) {
