@@ -3,6 +3,8 @@ import { TransactionsContext } from "../../context/TransactionsContext";
 
 import { Link } from 'preact-router/match';
 
+import style from "./style.css";
+
 const User = (props) => {
   const { id } = props;
   const [transactionUser, setTransactionUser] = useState(null);
@@ -21,14 +23,15 @@ const User = (props) => {
     <div>
       <header>
         <Link href="/">
-          <button className="button">Go Back</button>
+          <button className="button">{'< '} Go Back</button>
         </Link>
       </header>
-      <div>
+      <div className={style.transactionsContainer}>
+        <h1>{transactionUser.name}'s transactions</h1>
         {
           transactionUser.transactions.map((transaction) => (
-            <div>
-              <h1>{transaction.description}</h1>
+            <div className={style.transaction}>
+              <p>{transaction.description}</p>
               <p>EUR {transaction.amount}</p>
             </div>
           ))
