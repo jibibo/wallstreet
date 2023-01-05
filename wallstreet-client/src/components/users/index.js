@@ -147,10 +147,13 @@ const Users = () => {
 						{users.map((user) => (
 							<li
 								className={style.userContainer}
+								style={{
+									border: user.selected ? '2px solid white' : 'none',
+								}}
 								onClick={() => handleUser(user.id)}
 								onDragOver={handleDragOver}
 								onDrop={(event) => handleOnDrop(event, user.id)}>
-								<h2>{user.name} {user.selected ? '✅' : ''}</h2>
+								<h2>{user.name}</h2>
 								<p className={style.userDebt}>EUR {calculateDebt(user.transactions)}</p>
 								{
 									inspectUser === user.id && (
