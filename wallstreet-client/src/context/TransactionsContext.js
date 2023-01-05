@@ -1,6 +1,6 @@
 import { createContext } from "preact";
 
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 export const TransactionsContext = createContext();
 
@@ -9,6 +9,18 @@ export const TransactionsContextProvider = ({ children }) => {
   const [selectedTransactionIds, setSelectedTransactionIds] = useState(new Set());
   const [transactionSplit, setTransactionSplit] = useState(false);
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const savedUsers = JSON.parse(localStorage.getItem("users"));
+    const savedTransactions = JSON.parse(localStorage.getItem("transactions"));
+    if (savedTransactions) {
+      setTransactions(savedTransactions);
+    }
+
+    if (savedUsers) {
+      setUsers(savedUsers);
+    }
+  }, []);
 
   return (
     <TransactionsContext.Provider

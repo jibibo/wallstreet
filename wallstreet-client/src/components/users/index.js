@@ -21,13 +21,6 @@ const Users = () => {
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
 
-	useEffect(() => {
-		const savedUsers = JSON.parse(localStorage.getItem('users'));
-		if (savedUsers) {
-			setUsers(savedUsers);
-		}
-	}, []);
-
 	const handleUser = (id) => {
 		if (selectedTransactionIds.size === 0) {
 			if (inspectUser === id) {

@@ -13,14 +13,6 @@ const Transactions = () => {
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
 
-	useEffect(() => {
-		const storedTransactions = localStorage.getItem("transactions");
-		if (storedTransactions) {
-			setTransactions(JSON.parse(storedTransactions));
-			return;
-		}
-	}, []);
-
 	const onClickTransaction = (id) => {
 		if (selectedTransactionIds.has(id)) {
 			selectedTransactionIds.delete(id);
