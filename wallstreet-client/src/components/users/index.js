@@ -1,6 +1,7 @@
 import { TransactionsContext } from '../../context/TransactionsContext';
 
 import { useState, useContext, useEffect } from 'preact/hooks';
+import { Link } from "preact-router/match";
 
 import calculateDebt from '../../utils/calculateDebt';
 
@@ -152,11 +153,19 @@ const Users = () => {
 										<div>
 											{user.transactions.length === 0 && <p><i>No transactions yet</i></p>}
 											<ul>
-												{user.transactions.map((transaction) => (
+												{user.transactions.slice(0, 3).map((transaction) => (
 													<li className={style.userTransaction}>
 														{transaction.description}: {transaction.amount}
 													</li>
 												))}
+												{
+													user.transactions.length > 3 &&
+													<Link href={`/user/${user.id}`}>
+														<button style={{ marginTop: "10px" }} className="button">
+															View all {user.transactions.length} transactions
+														</button>
+													</Link>
+												}
 											</ul>
 										</div>
 									)
