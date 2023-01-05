@@ -2,24 +2,6 @@
   padding: 1rem;
 }
 
-.fileInput {
-  display: none;
-}
-
-.fileInput + label {
-  display: inline-block;
-  padding: 0.7rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.fileInput + label:hover {
-  color: black;
-  background-color: #ccc;
-}
-
 .transaction {
   border-radius: 0.3rem;
   cursor: pointer;

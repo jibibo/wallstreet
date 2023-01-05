@@ -4,8 +4,6 @@ import { TransactionsContext } from '../../context/TransactionsContext';
 
 import { useContext, useEffect } from 'preact/hooks';
 
-import parseCSV from '../../utils/parseCSV';
-
 const Transactions = () => {
 	const {
 		transactions,
@@ -33,31 +31,12 @@ const Transactions = () => {
 		setSelectedTransactionIds(new Set(selectedTransactionIds));
 	}
 
-	const handleFileInputChange = (e) => {
-		const file = e.target.files[0];
-		const reader = new FileReader();
-		reader.onload = (e) => {
-			const csv = e.target.result;
-
-			// Check if transaction already exists by matching description
-			const descriptions = transactions.map((transaction) => transaction.description);
-			let newTransactions = parseCSV(csv);
-			newTransactions = newTransactions.filter((transaction) => !descriptions.includes(transaction.description));
-			setTransactions([...transactions, ...newTransactions]);
-		};
-		reader.readAsText(file);
-
-		e.target.value = "";
-	}
-
 	const handleDragStart = (event, transactionId) => {
 		event.dataTransfer.setData("text/plain", transactionId);
 	}
 
 	return (
 		<section className={style.transactions}>
-			<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
-			<label for="file">+</label>
 			<h2 style={{ fontSize: "2rem" }}>Transactions</h2>
 			<table className={style.table}>
 				<thead>
