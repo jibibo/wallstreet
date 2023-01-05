@@ -41,18 +41,22 @@ const Home = () => {
 
 	return (
 		<div>
-			<button
-				className="button"
-				style={{ margin: "1rem" }}
-				onClick={saveState}>
-				Save state
-			</button>
-			<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
-			<label for="file">+ &nbsp; Add transactions</label>
-			{
-				oldState !== JSON.stringify([...transactions, ...users]) &&
-				<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
-			}
+			<div className={style.header}>
+				<div>
+					<button
+						className="button"
+						style={{ margin: "1rem" }}
+						onClick={saveState}>
+						Save state
+					</button>
+					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
+					<label for="file">+ &nbsp; Add transactions</label>
+				</div>
+				{
+					oldState !== JSON.stringify([...transactions, ...users]) &&
+					<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
+				}
+			</div>
 			<main className={style.main}>
 				<Transactions />
 				<Users />
