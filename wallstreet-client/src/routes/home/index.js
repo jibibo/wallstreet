@@ -21,10 +21,6 @@ const Home = () => {
 
 	return (
 		<div>
-			<main className={style.main}>
-				<Transactions />
-				<Users />
-			</main>
 			<button
 				className="button"
 				style={{ margin: "1rem" }}
@@ -35,6 +31,10 @@ const Home = () => {
 				oldState !== JSON.stringify([...transactions, ...users]) &&
 				<p className={style.pill}>You have unsaved changes</p>
 			}
+			<main className={style.main}>
+				<Transactions />
+				<Users />
+			</main>
 		</div>
 	);
 };
