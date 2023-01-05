@@ -15,6 +15,28 @@ li {
   cursor: pointer;
 }
 
+.pill {
+  font-size: 0.8rem;
+  width: max-content;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  opacity: 0.5;
+  animation: pill 500ms forwards;
+}
+
+@keyframes pill {
+  0% {
+    transform: translateY(0.5rem);
+    background-color: #b2b2b2;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: #121212;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .main {
     flex-direction: column;
