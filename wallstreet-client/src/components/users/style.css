@@ -55,13 +55,14 @@
   width: fit-content;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  border: 1px solid #6e6e6e;
 }
 
 .userTransaction {
-  background-color: #363636;
   width: fit-content;
   padding: 0.5rem;
   margin-top: 1rem;
+  border: 1px solid #363636;
   border-radius: 0.5rem;
 }
 

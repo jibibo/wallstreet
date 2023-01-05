@@ -73,8 +73,8 @@ const Transactions = () => {
 							className={style.transaction}
 							style={{
 								boxShadow: transaction.amount > 0 ?
-									"0px 0px 0px 2px #a8cf49" :
-									"0px 0px 0px 2px #f53636",
+									"0px 0px 0px 1px #a8cf49" :
+									"0px 0px 0px 1px #f53636",
 								opacity:
 									selectedTransactionIds.has(transaction.id) ? "0.5" : "unset"
 							}}

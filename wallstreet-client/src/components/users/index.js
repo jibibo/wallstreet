@@ -137,7 +137,7 @@ const Users = () => {
 		<section className={style.users}>
 			<div>
 				<div className={style.usersHeaderContainer}>
-					<h1 className={style.usersHeader}>Users</h1>
+					<h2 className={style.usersHeader}>Users</h2>
 					<form className={style.form} onSubmit={addUser}>
 						<input type="text" placeholder="Add user" />
 					</form>
@@ -151,7 +151,7 @@ const Users = () => {
 								onDragOver={handleDragOver}
 								onDrop={(event) => handleOnDrop(event, user.id)}>
 								<h2>{user.name} {user.selected ? '✅' : ''}</h2>
-								<p className={style.userDebt}><b>Debt</b>: {calculateDebt(user.transactions)}</p>
+								<p className={style.userDebt}>EUR {calculateDebt(user.transactions)}</p>
 								{
 									inspectUser === user.id && (
 										<div>
