@@ -56,7 +56,8 @@ const Transactions = () => {
 
 	return (
 		<section className={style.transactions}>
-			<input type="file" onChange={handleFileInputChange}></input>
+			<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
+			<label for="file">+</label>
 			<h2 style={{ fontSize: "2rem" }}>Transactions</h2>
 			<table className={style.table}>
 				<thead>
