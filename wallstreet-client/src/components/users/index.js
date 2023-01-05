@@ -69,7 +69,8 @@ const Users = () => {
 		const amountPerUser = totalAmount / splitUsers.length;
 
 		splitTransactions.forEach((transaction) => {
-			transaction.amount = amountPerUser;
+			// Add transaction and round to 2 decimals
+			transaction.amount = Math.round((amountPerUser + Number.EPSILON) * 100) / 100
 		});
 
 		users.forEach((user) => {
