@@ -81,9 +81,8 @@ const Users = () => {
 		users.forEach((user) => {
 			if (user.selected) {
 				user.transactions.push(...splitTransactions);
+				user.selected = !user.selected;
 			}
-
-			user.selected = !user.selected;
 		});
 
 		setUsers([...users]);
