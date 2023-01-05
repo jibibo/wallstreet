@@ -21,15 +21,14 @@
 }
 
 .transaction {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: 0.3rem;
   cursor: pointer;
+  transition: box-shadow 100ms ease-in-out;
 }
 
 .table {
   border-collapse: separate;
-  border-spacing: 0 1em;
+  border-spacing: 0 1rem;
   width: 100%;
 }
 

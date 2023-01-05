@@ -73,11 +73,11 @@ const Transactions = () => {
 							onDragStart={(event) => handleDragStart(event, transaction.id)}
 							className={style.transaction}
 							style={{
-								boxShadow: transaction.amount > 0 ?
-									"0px 0px 0px 1px #a8cf49" :
-									"0px 0px 0px 1px #f53636",
-								opacity:
-									selectedTransactionIds.has(transaction.id) ? "0.5" : "unset"
+								boxShadow:
+									selectedTransactionIds.has(transaction.id) ? "0px 0px 0px 3px white" :
+										transaction.amount > 0 ?
+											"0px 0px 0px 1px #a8cf49" :
+											"0px 0px 0px 1px #f53636",
 							}}
 							onClick={() => onClickTransaction(transaction.id)}>
 							<td>{transaction.amount} EUR</td>
