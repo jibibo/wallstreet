@@ -51,7 +51,7 @@ const Home = () => {
 			<label for="file">+ &nbsp; Add transactions</label>
 			{
 				oldState !== JSON.stringify([...transactions, ...users]) &&
-				<p className={style.pill}>You have unsaved changes</p>
+				<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
 			}
 			<main className={style.main}>
 				<Transactions />
