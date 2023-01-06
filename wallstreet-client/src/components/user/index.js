@@ -9,8 +9,6 @@ import calculateDebt from '../../utils/calculateDebt';
 import style from './style.css';
 
 const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
-  const [inspectUser, setInspectUser] = useState(null);
-
   const {
     users,
     setUsers,
@@ -22,14 +20,6 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
   } = useContext(TransactionsContext);
 
   const handleUser = (id) => {
-    if (selectedTransactionIds.size === 0) {
-      if (inspectUser === id) {
-        setInspectUser(null);
-      } else {
-        setInspectUser(id);
-      }
-    }
-
     if (transactionSplit) {
       const user = users.find((user) => user.id === id);
       user.selected = !user.selected;
@@ -97,34 +87,16 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
       style={{
         border: user.selected ? '2px solid white' : 'none',
       }}
-      onClick={() => handleUser(user.id)}
       onDragOver={handleDragOver}
       onDrop={(event) => handleOnDrop(event, user.id)}>
       <button onClick={() => handleUserSplit(user.id)}>{user.splitCount}x</button>
-      <h2>{user.name}</h2>
+      <h2 onClick={() => handleUser(user.id)}>{user.name}</h2>
       <p className={style.userDebt}>{calculateDebt(user.transactions)}</p>
-      {
-        inspectUser === user.id && (
-          <>
-            {user.transactions.length === 0 && <p><i>No transactions yet</i></p>}
-            <ul>
-              {user.transactions.slice(0, 3).map((transaction) => (
-                <li className={style.userTransaction}>
-                  {transaction.description}: {transaction.amount}
-                </li>
-              ))}
-              {
-                user.transactions.length > 3 &&
-                <Link href={`/user/${user.id}`}>
-                  <button style={{ marginTop: "10px" }} className="button">
-                    View all {user.transactions.length} transactions
-                  </button>
-                </Link>
-              }
-            </ul>
-          </>
-        )
-      }
+      <Link href={`/user/${user.id}`}>
+        <button style={{ marginTop: "10px" }} className="button">
+          View all {user.transactions.length} transactions
+        </button>
+      </Link>
     </li>
   );
 }
