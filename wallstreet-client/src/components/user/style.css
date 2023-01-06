@@ -1,0 +1,49 @@
+.userContainer {
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: #121212;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.userContainer:hover {
+  background-color: #181818;
+}
+
+.userDebt {
+  background-color: #0f0f0f;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #6e6e6e;
+}
+
+.userTransaction {
+  width: fit-content;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #363636;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .usersHeaderContainer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .users {
+    padding: 1rem;
+  }
+
+  .form {
+    margin-right: 0;
+  }
+
+  .usersList {
+    width: 100%;
+  }
+}
