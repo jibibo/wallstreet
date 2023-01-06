@@ -148,7 +148,7 @@ const Users = () => {
 								onDragOver={handleDragOver}
 								onDrop={(event) => handleOnDrop(event, user.id)}>
 								<h2>{user.name}</h2>
-								<p className={style.userDebt}>EUR {calculateDebt(user.transactions)}</p>
+								<p className={style.userDebt}>{calculateDebt(user.transactions)}</p>
 								{
 									inspectUser === user.id && (
 										<div>

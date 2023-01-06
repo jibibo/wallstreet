@@ -32,7 +32,7 @@ const User = (props) => {
           transactionUser.transactions.map((transaction) => (
             <div className={style.transaction}>
               <p>{transaction.description}</p>
-              <p>EUR {transaction.amount}</p>
+              <p>{transaction.amount}</p>
             </div>
           ))
         }

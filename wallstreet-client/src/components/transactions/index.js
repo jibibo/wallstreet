@@ -51,7 +51,7 @@ const Transactions = () => {
 											"0px 0px 0px 1px #f53636",
 							}}
 							onClick={() => onClickTransaction(transaction.id)}>
-							<td>{transaction.amount} EUR</td>
+							<td>{transaction.amount}</td>
 							<td>{transaction.description}</td>
 						</tr>
 					))}
