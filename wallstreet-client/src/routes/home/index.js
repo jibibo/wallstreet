@@ -9,17 +9,24 @@ import parseCSV from '../../utils/parseCSV';
 
 const Home = () => {
 	const { transactions, setTransactions, users } = useContext(TransactionsContext);
-	const [oldState, setOldState] = useState("");
+	const [newChanges, setNewChanges] = useState(false);
 
 	useEffect(() => {
-		if (oldState === "" || oldState === "[]")
-			setOldState(JSON.stringify([...transactions, ...users]));
+		let savedTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
+		let savedUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+		if (
+			JSON.stringify([...savedTransactions, ...savedUsers]) !==
+			JSON.stringify([...transactions, ...users])
+		)
+			setNewChanges(true);
+
 	}, [transactions, users]);
 
 	function saveState() {
 		localStorage.setItem('transactions', JSON.stringify(transactions));
 		localStorage.setItem('users', JSON.stringify(users));
-		setOldState(JSON.stringify([...transactions, ...users]));
+		setNewChanges(false);
 	}
 
 	const handleFileInputChange = (e) => {
@@ -53,7 +60,7 @@ const Home = () => {
 					<label for="file">+ &nbsp; Add transactions</label>
 				</div>
 				{
-					oldState !== JSON.stringify([...transactions, ...users]) &&
+					newChanges &&
 					<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
 				}
 			</div>
