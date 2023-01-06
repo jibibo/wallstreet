@@ -34,12 +34,26 @@ const Home = () => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			const csv = e.target.result;
+			parseCSV(csv)
+				.then((newTransactions) => {
+					// Get transaction descriptions
+					const transactionDescriptions = new Set();
+					transactions.forEach(transaction => {
+						transactionDescriptions.add(transaction.description);
+					});
 
-			// Check if transaction already exists by matching description
-			const descriptions = transactions.map((transaction) => transaction.description);
-			let newTransactions = parseCSV(csv);
-			newTransactions = newTransactions.filter((transaction) => !descriptions.includes(transaction.description));
-			setTransactions([...transactions, ...newTransactions]);
+					users.forEach(user => {
+						user.transactions.forEach(transaction => {
+							transactionDescriptions.add(transaction.description);
+						});
+					});
+
+					// Check if new transactions already have these descriptions, if not, dont add
+					const newTransactionsToAdd =
+						newTransactions.filter(transaction => !transactionDescriptions.has(transaction.description));
+
+					setTransactions([...transactions, ...newTransactionsToAdd]);
+				});
 		};
 		reader.readAsText(file);
 
@@ -59,8 +73,7 @@ const Home = () => {
 					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
 					<label for="file">+ &nbsp; Add transactions</label>
 				</div>
-				{
-					newChanges &&
+				{newChanges &&
 					<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
 				}
 			</div>
