@@ -1,29 +1,44 @@
-import { v4 as uuidv4 } from 'uuid';
+import Papa from "papaparse";
 
-export default function parseCSV(csvString) {
-  let rows = csvString.split("\n");
+import { v4 as uuidv4 } from "uuid";
 
-  let data = [];
-  // Loop through the rows
-  for (let i = 1; i < rows.length; i++) {
-    // Split the row on commas to get an array of columns
-    let columns = rows[i].split(",");
+export default function parseCSV(string) {
+  return new Promise((resolve, reject) => {
+    const transactions = [];
+    const transactionDescriptions = new Set();
 
-    // Create an object for this row of data
-    let amount = parseFloat(columns[1]);
-    if (columns[0] == "withdraw")
-      amount = -amount;
+    Papa.parse(string, {
+      header: true,
+      delimiter: ",",
+      step: ({ data: row }) => {
+        if (Object.values(row).length === 1) return;
 
-    const row = {
-      id: uuidv4(),
-      amount,
-      description: columns[2].trim(),
-    };
+        Object.entries(row).forEach(entry => {
+          const [key, value] = entry;
+          if (key === "Bedrag (EUR)") {
+            row.amount = parseFloat(row["Bedrag (EUR)"].replace(/,/, "."));
 
-    // Push the row object onto the data array
-    data.push(row);
-  }
+            if (row["Af Bij"] === "Af")
+              row.amount = -row.amount;
+          }
 
-  console.log(data)
-  return data;
+          if (key === "Mededelingen") {
+            if (transactionDescriptions.has(value)) {
+              row.Mededelingen = row.Mededelingen + `[${transactionDescriptions.size}]`;
+            }
+            transactionDescriptions.add(row.Mededelingen);
+          }
+        });
+
+        row.description = row.Mededelingen;
+        delete row["Mededelingen"];
+        delete row["Bedrag (EUR)"];
+        row.id = uuidv4();
+        transactions.push(row);
+      },
+      complete: () => {
+        resolve(transactions);
+      }
+    });
+  })
 }
