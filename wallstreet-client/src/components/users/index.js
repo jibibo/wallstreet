@@ -65,19 +65,18 @@ const Users = () => {
 		// Split the transactions based on the selected users
 		const splitTransactions = transactions.filter((transaction) => selectedTransactionIds.has(transaction.id));
 
-		const totalAmount = splitTransactions.reduce((acc, transaction) => acc + transaction.amount, 0);
-		const amountPerUser = totalAmount / splitUsers.length;
-
-		splitTransactions.forEach((transaction) => {
-			// Add transaction and round to 2 decimals
-			transaction.amount = Math.round((amountPerUser + Number.EPSILON) * 100) / 100
-		});
+		splitTransactions.forEach(transaction => {
+			const amountPerUser = transaction.amount / splitUsers.length;
+			transaction.amount = Math.round((amountPerUser + Number.EPSILON) * 100) / 100;
+			users.forEach((user) => {
+				if (user.selected) {
+					user.transactions.push(transaction);
+				}
+			});
+		})
 
 		users.forEach((user) => {
-			if (user.selected) {
-				user.transactions.push(...splitTransactions);
-				user.selected = !user.selected;
-			}
+			user.selected = false;
 		});
 
 		setUsers([...users]);
