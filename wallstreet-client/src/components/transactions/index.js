@@ -29,6 +29,12 @@ const Transactions = () => {
 
 	return (
 		<section className={style.transactions}>
+			<button
+				className="button"
+				disabled={selectedTransactionIds.size == 0}
+				onClick={() => setTransactionSplit(true)}>
+				Split among us
+			</button>
 			<h2 style={{ fontSize: "2rem" }}>Transactions</h2>
 			<table className={style.table}>
 				<thead>
@@ -57,12 +63,6 @@ const Transactions = () => {
 					))}
 				</tbody>
 			</table>
-			<button
-				className="button"
-				disabled={selectedTransactionIds.size == 0}
-				onClick={() => setTransactionSplit(true)}>
-				Split among us
-			</button>
 		</section>
 	);
 }
