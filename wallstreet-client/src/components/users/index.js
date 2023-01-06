@@ -133,7 +133,7 @@ const Users = () => {
 				<div className={style.usersHeaderContainer}>
 					<h2 className={style.usersHeader}>Users</h2>
 					<form className={style.form} onSubmit={addUser}>
-						<input type="text" placeholder="Add user" />
+						<input type="text" placeholder="+ &nbsp; Add user" />
 					</form>
 				</div>
 				<div>

@@ -17,18 +17,31 @@
 }
 
 .form > input {
-  padding: 1rem;
-  border: none;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  font-family: inherit;
+  background-color: #1c1c1c;
+  border: 1px solid white;
   border-radius: 0.5rem;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 .form > input:focus {
+  background-color: #ccc;
+  color: black;
   outline: none;
 }
 
+.form > input:hover {
+  border: 1px solid rgb(203, 203, 203);
+}
+
 .form > input::placeholder {
-  font-weight: bold;
-  color: #ccc;
+  color: white;
+}
+
+.form > input:focus::placeholder {
+  color: black;
 }
 
 .usersList {
