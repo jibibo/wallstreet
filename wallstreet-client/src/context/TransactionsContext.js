@@ -18,6 +18,7 @@ export const TransactionsContextProvider = ({ children }) => {
     }
 
     if (savedUsers) {
+      savedUsers.forEach(user => { user.selected = false });
       setUsers(savedUsers);
     }
   }, []);
