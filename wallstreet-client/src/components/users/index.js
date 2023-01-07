@@ -60,13 +60,15 @@ const Users = () => {
 		const name = event.target[0].value;
 		const id = users.length + 1;
 
-		setUsers([...users, {
+		const newUser = {
 			id, name,
 			transactions: [],
 			selected: false,
 			splitCount: 0,
-		}]);
-		setFilteredUsers([...users])
+		}
+
+		setUsers([...users, newUser]);
+		setFilteredUsers([...users, newUser])
 
 		event.target.reset();
 	}
