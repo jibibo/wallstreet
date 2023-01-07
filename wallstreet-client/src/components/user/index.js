@@ -19,9 +19,8 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
     transactionSplit,
   } = useContext(TransactionsContext);
 
-  const handleUser = (id) => {
+  const handleUser = (user) => {
     if (transactionSplit) {
-      const user = users.find((user) => user.id === id);
       user.selected = !user.selected;
 
       if (user.selected) {
@@ -33,8 +32,6 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
       setUsers([...users]);
       return;
     }
-
-    const user = users.find((user) => user.id === id);
 
     if (selectedTransactionIds.size === 0) return;
 
@@ -54,8 +51,7 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
     event.preventDefault();
   }
 
-  const handleOnDrop = (event, userId) => {
-    const user = users.find((user) => user.id === userId);
+  const handleOnDrop = (event, user) => {
     const transactionId = event.dataTransfer.getData("text/plain");
 
     const transaction = transactions.find((transaction) => transaction.id === transactionId);
@@ -105,9 +101,9 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
         style={{
           border: user.selected ? '2px solid white' : 'none',
         }}
-        onClick={() => handleUser(user.id)}
+        onClick={() => handleUser(user)}
         onDragOver={handleDragOver}
-        onDrop={(event) => handleOnDrop(event, user.id)}
+        onDrop={(event) => handleOnDrop(event, user)}
       >
         <div>
           <h2>{user.name}</h2>
