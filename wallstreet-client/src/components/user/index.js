@@ -20,11 +20,15 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
 
   const handleUser = (user) => {
     if (transactionSplit) {
+      if (user.splitCount === 0)
+        user.splitCount = 1;
+
       user.selected = !user.selected;
 
       if (user.selected) {
         setSplitUsers([...splitUsers, user]);
       } else {
+        user.splitCount = user.splitCount === 1 ? 0 : user.splitCount;
         setSplitUsers(splitUsers.filter((splitUser) => splitUser.id !== user.id));
       }
 
@@ -70,17 +74,27 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
   }
 
   const handleUserSplit = (user, action) => {
-    if (action === "increment")
+    if (action === "increment") {
+      if (!user.selected) {
+        user.selected = true;
+        setSplitUsers([...splitUsers, user]);
+      }
+
       user.splitCount++;
+    }
 
     if (action === "decrement") {
+      if (user.splitCount === 1) {
+        user.selected = false;
+        setSplitUsers(splitUsers.filter((splitUser) => splitUser.id !== user.id));
+      }
+
       if (user.splitCount === 0) return;
       user.splitCount--;
     }
 
     setUsers([...users]);
   }
-
 
   return (
     <section className={style.usersList}>
