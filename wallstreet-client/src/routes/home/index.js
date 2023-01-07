@@ -63,19 +63,16 @@ const Home = () => {
 	return (
 		<div>
 			<div className={style.header}>
-				<div>
+				<div style={{ margin: "1rem" }}>
+					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
+					<label for="file">+ &nbsp; Add transactions</label>
 					<button
+						hidden={!newChanges}
 						className="button"
-						style={{ margin: "1rem" }}
 						onClick={saveState}>
 						Save state
 					</button>
-					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
-					<label for="file">+ &nbsp; Add transactions</label>
 				</div>
-				{newChanges &&
-					<p style={{ float: "right" }} className={style.pill}>You have unsaved changes!</p>
-				}
 			</div>
 			<main className={style.main}>
 				<Transactions />

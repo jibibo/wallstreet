@@ -71,6 +71,17 @@ const Users = () => {
 
 	return (
 		<section className={style.users}>
+			{/* @TODO optimize splitUsers->splitCount check */}
+			<button
+				hidden={!transactionSplit}
+				className="button"
+				disabled={splitUsers.length === 0 || splitUsers.every(user => user.splitCount === 0)}
+				onClick={onClickSplit}>
+				Confirm split
+			</button>
+			<p hidden={!transactionSplit || splitUsers.some(user => user.splitCount > 0)}>
+				At least one <i>selected</i> user should have a split greater than 0
+			</p>
 			<div className={style.usersHeaderContainer}>
 				<h2 className={style.usersHeader}>Users</h2>
 				<form className={style.form} onSubmit={addUser}>
@@ -86,17 +97,6 @@ const Users = () => {
 							setSplitUsers={setSplitUsers} />
 					)}
 				</ul>
-				{/* @TODO optimize splitUsers->splitCount check */}
-				<button
-					hidden={!transactionSplit}
-					className="button"
-					disabled={splitUsers.length === 0 || splitUsers.every(user => user.splitCount === 0)}
-					onClick={onClickSplit}>
-					Confirm split
-				</button>
-				<p hidden={!transactionSplit || splitUsers.some(user => user.splitCount > 0)}>
-					At least one <i>selected</i> user should have a split greater than 0
-				</p>
 			</div>
 		</section>
 	);
