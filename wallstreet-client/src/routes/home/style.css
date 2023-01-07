@@ -1,17 +1,22 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  margin: 1rem;
+  gap: 1rem;
   align-items: center;
-  padding: 0 1rem;
   color: white;
 }
 
 .main {
+  height: 90%;
   display: flex;
 }
 
-.main > * {
-  flex: 1 0 50%;
+.main > section:nth-child(1) {
+  min-width: 60%;
+}
+
+.main > section:nth-child(2) {
+  min-width: 40%;
 }
 
 ul {

@@ -1,5 +1,6 @@
 .usersHeaderContainer {
   margin-top: 1rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,10 +11,6 @@
 
 .usersHeader {
   margin: 0;
-}
-
-.form {
-  margin-right: 2rem;
 }
 
 .form > input {
@@ -42,4 +39,37 @@
 
 .form > input:focus::placeholder {
   color: black;
+}
+
+.userSearch {
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #2a2a2a;
+}
+
+.userSearch:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 400px) {
+  .usersHeaderContainer {
+    flex-direction: column;
+  }
+
+  .usersHeaderContainer > div {
+    width: 100%;
+  }
+
+  .form {
+    margin-top: 1rem;
+  }
+
+  .form > input {
+    width: 100%;
+  }
 }

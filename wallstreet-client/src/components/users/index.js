@@ -104,7 +104,7 @@ const Users = () => {
 					<form className={style.form} onSubmit={addUser}>
 						<input type="text" placeholder="+ &nbsp; Add user" />
 					</form>
-					<input onInput={handleSearch} type="text" placeholder="Search" />
+					<input className={style.userSearch} onInput={handleSearch} type="text" placeholder="Search" />
 				</div>
 			</div>
 			<div>
