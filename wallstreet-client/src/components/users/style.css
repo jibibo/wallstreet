@@ -43,7 +43,3 @@
 .form > input:focus::placeholder {
   color: black;
 }
-
-.usersList {
-  margin-right: 2rem;
-}

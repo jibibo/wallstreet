@@ -1,9 +1,15 @@
+.usersList {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
 .userContainer {
   align-items: center;
   width: 100%;
   padding: 1rem;
   margin-right: 1rem;
-  margin-bottom: 1rem;
   background-color: #121212;
   border-radius: 0.5rem;
   transition: background-color 0.3s;
@@ -29,6 +35,31 @@
   border-radius: 0.5rem;
 }
 
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #121212;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.splitContainer button {
+  font-family: "Rubik", sans-serif;
+  padding: 1.5rem 1rem;
+  background-color: #1c1c1c;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.splitContainer button:hover {
+  background-color: #181818;
+}
+
 @media screen and (max-width: 900px) {
   .usersHeaderContainer {
     align-items: flex-start;
@@ -45,5 +76,7 @@
 
   .usersList {
     width: 100%;
+    margin: 0;
+    padding: 1rem;
   }
 }

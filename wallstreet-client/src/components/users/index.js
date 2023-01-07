@@ -78,7 +78,7 @@ const Users = () => {
 				</form>
 			</div>
 			<div>
-				<ul className={style.usersList}>
+				<ul>
 					{users.map(user =>
 						<UserEntry
 							user={user}
