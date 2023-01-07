@@ -1,8 +1,7 @@
+import { useContext } from 'preact/hooks';
 import { TransactionsContext } from '../../context/TransactionsContext';
 
 import { Link } from "preact-router/match";
-
-import { useState, useContext } from 'preact/hooks';
 
 import calculateDebt from '../../utils/calculateDebt';
 

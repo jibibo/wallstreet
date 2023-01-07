@@ -1,13 +1,11 @@
-import style from './style.css';
-
+import { useContext } from 'preact/hooks';
 import { TransactionsContext } from '../../context/TransactionsContext';
 
-import { useContext, useEffect } from 'preact/hooks';
+import style from './style.css';
 
 const Transactions = () => {
 	const {
 		transactions,
-		setTransactions,
 		selectedTransactionIds,
 		setSelectedTransactionIds,
 		setTransactionSplit,

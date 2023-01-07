@@ -1,6 +1,6 @@
 import { Router } from 'preact-router';
-
 import { TransactionsContextProvider } from '../context/TransactionsContext';
+
 
 import Home from '../routes/home';
 import User from '../routes/user';
