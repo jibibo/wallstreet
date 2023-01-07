@@ -32,7 +32,12 @@ const Transactions = () => {
 
 	const getTransactionDate = (date) => {
 		const transactionDate = new Date(date);
-		return `${dayNames[transactionDate.getDay()]}, ${transactionDate.getDate()} ${monthNames[transactionDate.getMonth()]}`;
+		const day = dayNames[transactionDate.getDay()]
+		const dateNumber = transactionDate.getDate();
+		const month = monthNames[transactionDate.getMonth()];
+		const year = transactionDate.getFullYear();
+
+		return `${day} ${dateNumber} ${month} ${year}`;
 	}
 
 	return (
@@ -47,9 +52,9 @@ const Transactions = () => {
 			<table className={style.table}>
 				<thead>
 					<tr style={{ textAlign: "left" }}>
-						<th>Date</th>
-						<th>Amount</th>
-						<th>Description</th>
+						<th style={{ width: "15%" }}>Date</th>
+						<th style={{ width: "5%" }}>Amount</th>
+						<th style={{ width: "80%" }}>Description</th>
 					</tr>
 				</thead>
 				<tbody>
