@@ -105,11 +105,12 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
         style={{
           border: user.selected ? '2px solid white' : 'none',
         }}
+        onClick={() => handleUser(user.id)}
         onDragOver={handleDragOver}
         onDrop={(event) => handleOnDrop(event, user.id)}
       >
         <div>
-          <h2 onClick={() => handleUser(user.id)}>{user.name}</h2>
+          <h2>{user.name}</h2>
           <p className={style.userDebt}>{calculateDebt(user.transactions)}</p>
           <Link href={`/user/${user.id}`}>
             <button style={{ marginTop: "10px" }} className="button">
