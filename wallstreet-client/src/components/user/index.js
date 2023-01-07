@@ -25,7 +25,7 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
       if (user.selected) {
         setSplitUsers([...splitUsers, user]);
       } else {
-        setSplitUsers(splitUsers.filter((user) => user.id !== id));
+        setSplitUsers(splitUsers.filter((splitUser) => splitUser.id !== user.id));
       }
 
       setUsers([...users]);
