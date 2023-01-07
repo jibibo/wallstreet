@@ -109,7 +109,7 @@ const UserEntry = ({ user, splitUsers, setSplitUsers }) => {
           <p className={style.userDebt}>{calculateDebt(user.transactions)}</p>
           <Link href={`/user/${user.id}`}>
             <button style={{ marginTop: "10px" }} className="button">
-              View all {user.transactions.length} transactions
+              💵 View all {user.transactions.length} transactions
             </button>
           </Link>
         </div>
