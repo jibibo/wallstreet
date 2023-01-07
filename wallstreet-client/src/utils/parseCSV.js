@@ -31,6 +31,17 @@ export default function parseCSV(string) {
         });
 
         row.description = row.Mededelingen;
+
+        // Parse date as Date if it is in integer and in form YYYYMMDD
+        const year = row.Datum.toString().slice(0, 4);
+        const month = row.Datum.toString().slice(4, 6);
+        const day = row.Datum.toString().slice(6, 8);
+
+        row.date = new Date(year, month - 1, day);
+
+        console.log(row)
+
+        delete row["Datum"]
         delete row["Mededelingen"];
         delete row["Bedrag (EUR)"];
         row.id = uuidv4();

@@ -4,6 +4,11 @@ import { TransactionsContext } from '../../context/TransactionsContext';
 import style from './style.css';
 
 const Transactions = () => {
+	const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+	];
+	const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 	const {
 		transactions,
 		selectedTransactionIds,
@@ -37,6 +42,7 @@ const Transactions = () => {
 			<table className={style.table}>
 				<thead>
 					<tr style={{ textAlign: "left" }}>
+						<th>Date</th>
 						<th>Amount</th>
 						<th>Description</th>
 					</tr>
@@ -55,6 +61,9 @@ const Transactions = () => {
 											"0px 0px 0px 1px #f53636",
 							}}
 							onClick={() => onClickTransaction(transaction.id)}>
+							<td>
+								{dayNames[transaction.date.getDay()]} {transaction.date.getDate()} {monthNames[transaction.date.getMonth()]} {transaction.date.getFullYear()}
+							</td>
 							<td>{transaction.amount}</td>
 							<td>{transaction.description}</td>
 						</tr>
