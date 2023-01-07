@@ -18,6 +18,7 @@ const Users = () => {
 		transactionSplit,
 		setTransactionSplit,
 	} = useContext(TransactionsContext);
+	const [filteredUsers, setFilteredUsers] = useState(users);
 
 	const onClickSplit = () => {
 		// Split the transactions based on the selected users
@@ -65,8 +66,21 @@ const Users = () => {
 			selected: false,
 			splitCount: 0,
 		}]);
+		setFilteredUsers([...users])
 
 		event.target.reset();
+	}
+
+	const handleSearch = (event) => {
+		console.log(event.target.value)
+		if (event.target.value.trim() === '') {
+			setFilteredUsers(users);
+			return;
+		}
+
+		const search = event.target.value.toLowerCase();
+		const filteredUsers = users.filter((user) => user.name.toLowerCase().includes(search));
+		setFilteredUsers(filteredUsers);
 	}
 
 	return (
@@ -84,13 +98,16 @@ const Users = () => {
 			</p>
 			<div className={style.usersHeaderContainer}>
 				<h2 className={style.usersHeader}>Users</h2>
-				<form className={style.form} onSubmit={addUser}>
-					<input type="text" placeholder="+ &nbsp; Add user" />
-				</form>
+				<div>
+					<form className={style.form} onSubmit={addUser}>
+						<input type="text" placeholder="+ &nbsp; Add user" />
+					</form>
+					<input onInput={handleSearch} type="text" placeholder="Search" />
+				</div>
 			</div>
 			<div>
 				<ul>
-					{users.map(user =>
+					{filteredUsers.map(user =>
 						<UserEntry
 							user={user}
 							splitUsers={splitUsers}
