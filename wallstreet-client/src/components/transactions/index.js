@@ -46,7 +46,7 @@ const Transactions = () => {
 				className="button"
 				disabled={selectedTransactionIds.size == 0}
 				onClick={() => setTransactionSplit(true)}>
-				Split among us
+				Split
 			</button>
 			<h2 style={{ fontSize: "2rem" }}>Transactions</h2>
 			<table className={style.table}>
