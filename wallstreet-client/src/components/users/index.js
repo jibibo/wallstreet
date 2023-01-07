@@ -1,7 +1,7 @@
-import { TransactionsContext } from '../../context/TransactionsContext';
-import UserEntry from "../user";
-
 import { useState, useContext } from 'preact/hooks';
+import { TransactionsContext } from '../../context/TransactionsContext';
+
+import UserEntry from "../user";
 
 import style from './style.css';
 
