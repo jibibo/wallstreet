@@ -30,6 +30,11 @@ const Transactions = () => {
 		event.dataTransfer.setData("text/plain", transactionId);
 	}
 
+	const getTransactionDate = (date) => {
+		const transactionDate = new Date(date);
+		return `${dayNames[transactionDate.getDay()]}, ${transactionDate.getDate()} ${monthNames[transactionDate.getMonth()]}`;
+	}
+
 	return (
 		<section className={style.transactions}>
 			<button
@@ -62,7 +67,7 @@ const Transactions = () => {
 							}}
 							onClick={() => onClickTransaction(transaction.id)}>
 							<td>
-								{dayNames[transaction.date.getDay()]} {transaction.date.getDate()} {monthNames[transaction.date.getMonth()]} {transaction.date.getFullYear()}
+								{getTransactionDate(transaction.date)}
 							</td>
 							<td>{transaction.amount}</td>
 							<td>{transaction.description}</td>

@@ -37,13 +37,13 @@ export default function parseCSV(string) {
         const month = row.Datum.toString().slice(4, 6);
         const day = row.Datum.toString().slice(6, 8);
 
-        row.date = new Date(year, month - 1, day);
-
-        console.log(row)
+        const date = new Date(year, month - 1, day);
+        row.date = date.getTime();
 
         delete row["Datum"]
         delete row["Mededelingen"];
         delete row["Bedrag (EUR)"];
+
         row.id = uuidv4();
         transactions.push(row);
       },
