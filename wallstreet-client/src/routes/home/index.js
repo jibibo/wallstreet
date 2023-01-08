@@ -10,6 +10,7 @@ import parseCSV from '../../utils/parseCSV';
 const Home = () => {
 	const { transactions, setTransactions, users } = useContext(TransactionsContext);
 	const [newChanges, setNewChanges] = useState(false);
+	const [showAlert, setShowAlert] = useState(false);
 
 	useEffect(() => {
 		let savedTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
@@ -50,7 +51,17 @@ const Home = () => {
 
 					// Check if new transactions already have these descriptions, if not, dont add
 					const newTransactionsToAdd =
-						newTransactions.filter(transaction => !transactionDescriptions.has(transaction.description));
+						newTransactions.filter(transaction => {
+							if (transactionDescriptions.has(transaction.description)) {
+								setShowAlert(true);
+								setTimeout(() => {
+									setShowAlert(false);
+								}, 5000);
+								return false;
+							}
+
+							return true;
+						});
 
 					setTransactions([...transactions, ...newTransactionsToAdd]);
 				});
@@ -62,6 +73,9 @@ const Home = () => {
 
 	return (
 		<div>
+			<div className={style.alert} hidden={!showAlert}>
+				One or more of your transactions have already been added
+			</div>
 			<header className={style.header}>
 				<div>
 					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
