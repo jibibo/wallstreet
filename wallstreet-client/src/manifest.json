@@ -1,6 +1,6 @@
 {
-	"name": "client",
-	"short_name": "client",
+	"name": "Wallstreet bij ING",
+	"short_name": "wallstreet",
 	"start_url": "/",
 	"display": "standalone",
 	"orientation": "portrait",
