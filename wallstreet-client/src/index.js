@@ -1,4 +1,16 @@
 import './style';
-import App from './components/app';
+import Loading from './components/loading';
 
-export default App;
+import { Suspense, lazy } from 'preact/compat'
+
+const App = lazy(() => import('./components/app'));
+
+const Root = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      {<App />}
+    </Suspense>
+  );
+};
+
+export default Root;
