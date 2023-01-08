@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "ingfix",
+    "site": "wallstreeting",
     "public": "build",
     "ignore": [
       "firebase.json",
