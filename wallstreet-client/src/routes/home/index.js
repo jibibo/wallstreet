@@ -73,10 +73,8 @@ const Home = () => {
 
 	const loadExampleTransactions = async () => {
 		const data = await import("../../assets/transaction");
-		parseCSV(data.default)
-			.then((newTransactions) => {
-				setTransactions(newTransactions);
-			});
+		const newTransactions = await parseCSV(data.default)
+		setTransactions(newTransactions);
 	}
 
 	return (
