@@ -71,6 +71,14 @@ const Home = () => {
 		e.target.value = "";
 	}
 
+	const loadExampleTransactions = async () => {
+		const data = await import("../../assets/transaction");
+		parseCSV(data.default)
+			.then((newTransactions) => {
+				setTransactions(newTransactions);
+			});
+	}
+
 	return (
 		<div>
 			<div className={style.alert} hidden={!showAlert}>
@@ -80,6 +88,12 @@ const Home = () => {
 				<div>
 					<input className={style.fileInput} id="file" type="file" onChange={handleFileInputChange}></input>
 					<label for="file">+ &nbsp; Add transactions</label>
+					<p
+						onClick={loadExampleTransactions}
+						style={{ display: transactions.length ? "none" : "inline" }}
+						className={style.pill}>
+						Load example dataset
+					</p>
 				</div>
 				<button
 					hidden={!newChanges}
